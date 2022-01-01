@@ -13,7 +13,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prettier": "prettier --write ./contracts/*.sol"
   },
   "eslintConfig": {
     "extends": [
@@ -39,6 +40,8 @@
     "@types/react-dom": "^17.0.11",
     "@types/web3": "^1.2.2",
     "dotenv": "^10.0.0",
+    "prettier": "^2.5.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.19",
     "typescript": "^4.5.4"
   }
 }
