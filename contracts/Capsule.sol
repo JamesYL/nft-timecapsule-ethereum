@@ -10,14 +10,14 @@ contract TimeCapsule {
   );
   event DestroyCapsule(uint256 id);
 
-  struct Capsule {
+  struct TimeCapsuleType {
     string message;
     uint256 lockTime;
     uint256 unlockTime;
     address originalOwner;
   }
 
-  Capsule[] internal capsules;
+  TimeCapsuleType[] internal capsules;
   mapping(uint256 => address) internal capsuleToOwner;
   mapping(address => uint256) internal ownerCapsuleCount;
 
@@ -30,24 +30,24 @@ contract TimeCapsule {
     _;
   }
 
-  function createCapsule(string memory message, uint256 unlockTime)
-    public
-    returns (uint256)
-  {
+  function createCapsule(string memory message, uint256 unlockTime) public {
     uint256 lockTime = block.timestamp;
     require(lockTime < unlockTime);
-    capsules.push(Capsule(message, lockTime, unlockTime, msg.sender));
+    capsules.push(TimeCapsuleType(message, lockTime, unlockTime, msg.sender));
     uint256 id = capsules.length - 1;
     ownerCapsuleCount[msg.sender]++;
     capsuleToOwner[id] = msg.sender;
     emit NewCapsule(msg.sender, lockTime, unlockTime, id);
-    return id;
   }
 
   function destroyCapsule(uint256 id) public isOwner(id) isNotBroken(id) {
     ownerCapsuleCount[msg.sender]--;
     capsuleToOwner[id] = address(0);
     emit DestroyCapsule(id);
+  }
+
+  function getTotalCapsules() public view returns (uint256) {
+    return capsules.length;
   }
 
   function readCapsule(uint256 id)
