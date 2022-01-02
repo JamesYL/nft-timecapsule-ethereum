@@ -7,7 +7,7 @@ import os
 
 load_dotenv()
 
-contractName = "SimpleStorage"
+contractName = "Capsule"
 w3 = Web3(Web3.HTTPProvider(os.getenv("PROVIDER")))
 chain_id = int(os.getenv("CHAIN_ID"))
 address = os.getenv("ADDRESS")
@@ -15,7 +15,7 @@ private_key = os.getenv("PRIVATE_KEY")
 solc_version = os.getenv("SOLC_VERSION")
 
 contract_file = f"{contractName}.sol"
-with open(f"./contracts/{contract_file}") as file:
+with open(f"./{contract_file}") as file:
     contract_file_content = file.read()
 
 install_solc(solc_version)
