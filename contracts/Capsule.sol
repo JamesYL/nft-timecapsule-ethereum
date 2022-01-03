@@ -18,8 +18,8 @@ contract TimeCapsule {
   }
 
   TimeCapsuleType[] internal capsules;
-  mapping(uint256 => address) internal capsuleToOwner;
-  mapping(address => uint256) internal ownerCapsuleCount;
+  mapping(uint256 => address) public capsuleToOwner;
+  mapping(address => uint256) public ownerCapsuleCount;
 
   modifier isOwner(uint256 id) {
     require(capsuleToOwner[id] == msg.sender);
