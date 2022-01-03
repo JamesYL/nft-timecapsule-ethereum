@@ -1,3 +1,3 @@
-# readme
+# Readme
 
-Run python deploy.py to deploy
+Solidity smart contract time capsule
